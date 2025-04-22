@@ -5,18 +5,31 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Component Book 📚</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+
+	:root {
+		--gray: #656565;
+	}
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	@font-face {
+		font-family: "Salty";
+		src: url("fonts/SaltyFeathers.woff") format("woff");
+	}
+	@font-face {
+		font-family: "Cormorant";
+		src: url("fonts/CormorantGaramond.woff") format("woff");
 	}
 </style>
