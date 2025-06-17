@@ -1,0 +1,41 @@
+---
+
+interface Props {
+    id: string,
+    text: string
+}
+
+ const { id, text } = Astro.props
+
+---
+
+<div>
+    <span id={ id } class="number">00</span>
+    <span class="date=text">{ text }</span>
+</div>
+
+<style>
+    div {
+        color: currentColor;
+        font-family: "Bebas Reg", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        span.number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 0;
+            font-variant-numeric: tabular-nums;
+            font-size: 1.25rem;
+        }
+
+        span.date {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    }
+</style>
