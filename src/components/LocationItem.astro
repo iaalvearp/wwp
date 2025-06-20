@@ -1,0 +1,93 @@
+---
+interface Props {
+    src: string;
+    alt?: string;
+    hour: string;
+    title: string;
+    location: string;
+    address: string;
+    href: string;
+    textBtn: string;
+}
+
+const { src, alt, hour, title, location, address, href, textBtn }: Props = Astro.props;
+---
+
+<article>
+    <picture>
+        <img src={ src } alt={ alt || 'Imagen de ubicación' }>
+    </picture>
+    <h3>{ hour }</h3>
+    <h2>{ title }</h2>
+    <p class="location">{ location }</p>
+    <p class="address">{ address }</p>
+    <a href={ href } class="btn">{ textBtn }</a>
+</article>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+
+    picture {
+        width: 50%;
+        max-width: 7.5rem;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+    }
+
+    h3 {
+        font-family: "Cormorant", serif;
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        margin: 0;
+        font-family: "Salty", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 300;
+    }
+
+    .location {
+        margin: 0 auto;
+        font-family: "Cormorant", serif;
+        width: 65%;
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: var(--gray);
+    }
+    
+    .address {
+        font-family: "Cormorant", serif;
+        font-size: 1.25rem;
+        width: 75%;
+        color: var(--gray);
+    }
+
+    .btn {
+        margin: 0;
+        font-family: 'Bebas Reg';
+        font-weight: 300;
+        letter-spacing: 2px;
+        padding: 0.5rem 2rem;
+        background-color: var(--light-gray);
+        color: var(--gray);
+        text-decoration: none;
+        border-radius: 4px;
+    }
+</style>
