@@ -15,6 +15,7 @@ import LocationItem from "./LocationItem.astro";
         href="https://maps.app.goo.gl/8CRz77PL9duMYHwH7"
         textBtn="Ver Mapa"
     />
+    <div class="separator"></div>
     <LocationItem
         src="/assets/cups.png"
         alt="Seda Reception Location"
@@ -26,3 +27,26 @@ import LocationItem from "./LocationItem.astro";
         textBtn="Ver Mapa"
     />
 </section>
+
+<style>
+    section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-content: center;
+        align-items: center;
+
+        .separator {
+            width: 100%;
+            height: 3rem;
+        }
+    }
+
+    @media (width >= 768px) {
+        section {
+
+            .separator {
+                display: none;
+            }
+        }
+    }
+</style>
