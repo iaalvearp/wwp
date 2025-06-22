@@ -26,6 +26,10 @@ import LocationItem from "./LocationItem.astro";
         href="https://g.co/kgs/ebyzzZf"
         textBtn="Ver Mapa"
     />
+    <picture>
+        <img class="tweek" src="/assets/tweek.png" alt="Rama">
+        <img src="/imgs/hugging-couple.webp" alt="">
+    </picture>
 </section>
 
 <style>
@@ -34,11 +38,36 @@ import LocationItem from "./LocationItem.astro";
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         justify-content: center;
         align-items: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
 
         .separator {
             width: 100%;
             height: 3rem;
         }
+
+        picture {
+            width: 100%;
+            display: block;
+            aspect-ratio: 3 / 4;
+            position: relative;
+            padding: 5rem 0;
+            
+            .tweek {
+                position: absolute;
+                right: calc(-2.5rem - 1vw);
+                top: calc(-2rem - 1vh);
+                width: 65%;
+                max-width: 15rem;
+                aspect-ratio: 16 / 9;
+                z-index: 2;
+            }
+            img {
+                width: 100%;
+            }
+        }
+
     }
 
     @media (width >= 768px) {

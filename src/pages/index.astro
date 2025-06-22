@@ -5,17 +5,19 @@ import CountdownSectionSeda from '../components/CountdownSectionSeda.astro';
 import OurParentsSeda from '../components/OurParentsSeda.astro';
 import PhraseSeda from '../components/PhraseSeda.astro';
 import LocationSectionSeda from '../components/LocationSectionSeda.astro';
+import ItinerarySectionSeda from '../components/ItinerarySectionSeda.astro';
 
 ---
 
 <Layout>
     <main>
-        <img src="imgs/bg-dirty.avif" alt="">        
+        <img class="main-bg" src="imgs/bg-dirty.avif" alt="">        
         <HeroSeda />
         <CountdownSectionSeda/>
         <OurParentsSeda />
         <PhraseSeda />
         <LocationSectionSeda />
+        <ItinerarySectionSeda
     </main>
 </Layout>
 
@@ -25,7 +27,7 @@ import LocationSectionSeda from '../components/LocationSectionSeda.astro';
         height: 100%;
         position: relative;
 
-        img {
+        .main-bg {
             position: fixed;
             top: 0;
             left: 0;

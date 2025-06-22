@@ -1,0 +1,51 @@
+---
+import ItineraryItemSeda from "./ItineraryItemSeda.astro";
+
+
+---
+
+<section>
+    <ItineraryItemSeda
+        src="/assets/church.png"
+        alt="icono-ceremonia"
+        hour="18:00hrs"
+        title="Ceremonia"
+    />
+    <ItineraryItemSeda
+        src="/assets/cups.png"
+        alt="icono-recepción"
+        hour="20:00hrs"
+        title="Recepción"
+    />
+    <ItineraryItemSeda
+        src="/assets/photos.png"
+        alt="icono-fotos"
+        hour="20:30hrs"
+        title="Fotos"
+    />
+    <ItineraryItemSeda
+        src="/assets/dinner.png"
+        alt="icono-cena"
+        hour="21:00hrs"
+        title="Cena"
+    />
+    <ItineraryItemSeda
+        src="/assets/party.png"
+        alt="icono-fiesta"
+        hour="22:00hrs"
+        title="Fiesta"
+    />
+</section>
+
+<style>
+    section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+    }
+</style>

@@ -1,0 +1,74 @@
+---
+interface Props {
+    src: string;
+    alt?: string;
+    hour: string;
+    title : string;
+}
+const { src, alt, hour,  title }: Props = Astro.props;
+---
+
+<div class="item-container">
+    <div class="icon">
+        <img class="itinerary-icon" src={ src } alt={ alt || "icono-itinerario" } />
+    </div>
+    <div class="bar"></div>
+    <div class="itinerary-text">
+        <span class="itinerary-hour">{ hour }</span>
+        <span class="itinerary-title">{ title }</span>
+    </div>
+</div>
+
+<style>
+    .item-container {
+        display: grid;
+        grid-template-columns: 1fr 1px 2fr;
+        align-items: center;
+        width: 70%;
+        margin: 0 auto;
+        gap: 2rem;
+
+        .icon {
+            width: calc(3rem + 6vw);
+            height: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 3/4;
+
+            img {
+                width: 100%;
+                height: auto;
+                position: absolute;
+            }
+        }
+
+        .bar {
+            width: 1px;
+            height: 100%;
+            background-color: var(--gray);
+        }
+
+        .itinerary-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+
+            .itinerary-hour {
+                font-size: 1.5rem;
+                font-family: "Cormorant", serif;
+                margin: 0;
+            }
+            
+            .itinerary-title {
+                font-size: 1.5rem;
+                font-family: "Bebas Reg", sans-serif;
+                font-weight: 400;
+                letter-spacing: 1px;
+                margin: 0;
+            }
+        }
+    }
+</style>
