@@ -1,0 +1,89 @@
+---
+import BtnSeda from "./BtnSeda.astro";
+---
+
+<section>
+    <article>
+        <img src="/assets/gift.png" alt="">
+        <h2>Suegerencia de Regalo</h2>
+        <p class="sugestion">Tu presencia es nuestro <br> mayor regalo, pero si deseas <br> tener un detalles con nosotros, <br> ponemos a tu disposición <br> nuestras sugerencias</p>
+        <div class="account">
+            <h3>Banco Pichincha</h3>
+            <p>Cuenta de Ahorros: 1234567890</p>
+            <p>Amelia Ramírez Gutiérrez</p>
+        </div>
+        <BtnSeda 
+            href="https://www.amazon.com.mx/wedding?&language=es_MX&ref_=as_li_ss_tl"
+            textBtn="AMAZON" />
+    </article>
+</section>
+
+<style>
+    section {
+        background-color: var(--light-white);
+        padding: 5rem 0;
+        width: 100%;
+        overflow: hidden;
+
+        article {
+            width: 60%;
+            margin: 0 auto;
+            text-align: center;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            border: 1px solid var(--gray);
+            padding: 3rem 1rem;
+            border-radius: .5rem;
+            box-shadow: 4px 4px 16px var(--gray);
+        }
+
+        h2, p, h3 {
+            margin: 0;
+        }
+
+        img {
+            max-width: 30%;
+            height: auto;
+        }
+
+        h2 {
+            font-family: 'Salty';
+            font-size: calc(3rem + 1vw);
+            margin: 0;
+            font-weight: 300;
+            line-height: 3rem;
+            color: currentColor;
+        }
+
+        .sugestion {
+            font-family: 'Cormorant', serif;
+            font-size: calc(0.825rem + 1vw);
+            font-weight: 300;
+            line-height: calc(1.25rem + 1vw);
+            color: currentColor;
+            p {
+                color: var(--gray);
+    
+            }
+        }
+
+        .account {
+            font-family: 'Cormorant', serif;
+            font-size: calc(0.825rem + 1vw);
+            font-weight: 300;
+            line-height: calc(1.25rem + 1vw);
+            text-align: center;
+            margin: 0;
+            
+
+            h3 {
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                color: currentColor;
+            }
+        }
+    }
+</style>

@@ -8,7 +8,7 @@ import LocationItem from "./LocationItem.astro";
     <LocationItem
         src="/assets/church.png"
         alt="Seda Ceremony Location"
-        hour="3:00pm"
+        hour="03:00pm"
         title="Ceremonia"
         location="IGLESIA SAN JOSEMARÍA ESCRIVÁ DE BALAGUER"
         address="José María Escrivá 550, Colinas de San Javier, 44660 Guadalajara, Jal."
@@ -19,7 +19,7 @@ import LocationItem from "./LocationItem.astro";
     <LocationItem
         src="/assets/cups.png"
         alt="Seda Reception Location"
-        hour="4:30pm"
+        hour="04:30pm"
         title="Recepción"
         location="HOTEL HACIENDA LA MAGDALENA"
         address="Carr a Colotlán 1701-Km 1.7, 45200 La Magdalena, Jal."
@@ -28,7 +28,7 @@ import LocationItem from "./LocationItem.astro";
     />
     <picture>
         <img class="tweek" src="/assets/tweek.png" alt="Rama">
-        <img src="/imgs/hugging-couple.webp" alt="">
+        <img class="first-itinerary-pic" src="/imgs/hugging-couple.webp" alt="">
     </picture>
 </section>
 
@@ -52,19 +52,20 @@ import LocationItem from "./LocationItem.astro";
             display: block;
             aspect-ratio: 3 / 4;
             position: relative;
-            padding: 5rem 0;
+            margin-top: 5rem;
+            background-color: var(--light-gray);
             
+            .first-itinerary-pic {
+                width: 100%;
+            }
             .tweek {
                 position: absolute;
                 right: calc(-2.5rem - 1vw);
-                top: calc(-2rem - 1vh);
+                top: calc(-5rem - 5vh);
                 width: 65%;
                 max-width: 15rem;
                 aspect-ratio: 16 / 9;
                 z-index: 2;
-            }
-            img {
-                width: 100%;
             }
         }
 
