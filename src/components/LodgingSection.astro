@@ -1,0 +1,92 @@
+---
+import BtnSeda from './BtnSeda.astro';
+---
+
+
+<section>
+    <picture class="lodging-picture-container">
+        <img class="lodging-pic" src="/assets/hotel.png" alt="">
+    </picture>
+    <h2 class="lodging-title">Hospedaje</h2>
+    <div class="lodging-bar"></div>
+    <div class="lodging-text">
+        <p>
+            Te recomendamos algunas <br>
+            sugerencias de hospedaje que <br>
+            facilitarán tu estadía.
+        </p>
+    </div>
+    <div class="lodging-btns">
+        <BtnSeda
+        href=""
+        textBtn="Hotel Hi! Zapopan"
+        />
+        <BtnSeda
+        href=""
+        textBtn="Fiesta en Guadalajara"
+        />
+    </div>
+</section>
+
+<style>
+    section {
+        width: 100%;
+        padding: 4rem 0;
+        background-color: var(--light-gray);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+
+        .lodging-picture-container {
+            width: 20%;
+            display: block;
+            height: auto;
+            margin: auto;
+            aspect-ratio: 1 / 1;
+
+            .lodging-pic {
+                width: 100%;
+            }
+        }
+
+        .lodging-title {
+            margin: 0;
+            font-family: 'Salty';
+            font-size: calc(4rem + 1vw);
+            font-weight: 300;
+        }
+
+        .lodging-bar {
+            height: 1px;
+            width: 60%;
+            margin: 0 auto;
+            background-color: var(--gray);
+        }
+
+        .lodging-text {
+
+
+            p {
+                margin: 0;
+                font-family: "Cormorant", serif;
+                font-size: calc(1.125rem + 1vw);
+                font-weight: 300;
+                line-height: calc(1.75rem + 1vw);
+                color: currentColor;
+            }
+        }
+
+        .lodging-btns {
+            padding: 2rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 72%;
+            max-width: 16rem;
+            margin: 0 auto;
+        }
+    }
+</style>
