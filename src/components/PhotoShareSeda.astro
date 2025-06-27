@@ -1,0 +1,70 @@
+---
+
+---
+
+<section class="photo-share">
+    <img class="share-pic" src="/assets/camera.png" alt="">
+    <img class="share-qr" src="/assets/qr.png" alt="">
+    <h2 class="share-title">Comparte tus Fotografías</h2>
+    <p class="share-text">
+        ¡Queremos ver el mundo a través de tus ojos! <br>
+        Comparte tus fotos del evento usando el hashtag <strong>#AMELIAyGERARDO</strong>
+    </p>
+    <img class="share-tweek" src="/assets/share-tweek.png" alt="">
+</section>
+
+<style>
+    .photo-share {
+        width: 100%;
+        padding: 4rem 0;
+        margin: 0 0 5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+        overflow: hidden;
+        background-color: var(--light-gray);
+        position: relative;
+
+        .share-pic {
+            aspect-ratio: 15 / 10;
+            width: 35%;
+            margin: 0 auto;
+        }
+
+        .share-qr {
+            width: 30%;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+        }
+
+        .share-title {
+            margin: 0 auto;
+            font-family: 'Salty';
+            font-size: calc(4rem + 1vw);
+            font-weight: 300;
+            line-height: calc(3rem + 1vw);
+            color: var(--gray);
+        }
+
+        .share-text {
+            margin: 0 auto;
+            font-family: 'Cormorant';
+            font-size: calc(0.875rem + 1vw);
+            line-height: calc(1.5rem + 2vw);
+            color: var(--gray);
+            width: 90%;
+            max-width: 20rem;
+        }
+
+        .share-tweek {
+            display: block;
+            position: absolute;
+            bottom: -7rem;
+            right: -3rem;
+            width: 80%;
+            height: auto;
+        }
+    }
+</style>
