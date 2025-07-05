@@ -1,30 +1,48 @@
 ---
+import AdultsOnlySeda from "./AdultsOnlySeda.astro";
+
 
 ---
 
-<section class="photo-share">
-    <img class="share-pic" src="/assets/camera.png" alt="">
-    <img class="share-qr" src="/assets/qr.png" alt="">
-    <h2 class="share-title">Comparte tus Fotografías</h2>
-    <p class="share-text">
-        ¡Queremos ver el mundo a través de tus ojos! <br>
-        Comparte tus fotos del evento usando el hashtag <strong>#AMELIAyGERARDO</strong>
-    </p>
-    <img class="share-tweek" src="/assets/share-tweek.png" alt="">
+<section class="photo-share-container">
+    <div class="share-wraper">
+        <div class="photo-share">
+            <img class="share-pic" src="/assets/camera.png" alt="">
+            <img class="share-qr" src="/assets/qr.png" alt="">
+            <h2 class="share-title">Comparte tus Fotografías</h2>
+            <p class="share-text">
+                ¡Queremos ver el mundo a través de tus ojos! <br>
+                Comparte tus fotos del evento usando el hashtag <strong>#AMELIAyGERARDO</strong>
+            </p>
+        </div>
+        <img class="share-tweek" src="/assets/share-tweek.png" alt="">
+    </div>
+    <AdultsOnlySeda />    
 </section>
 
 <style>
+    .photo-share-container {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    .share-wraper {
+        width: 100%;
+        position: relative;
+        max-width: 48rem;
+        margin: 0 auto;
+        overflow: hidden;
+    }
     .photo-share {
         width: 100%;
-        padding: 4rem 0;
-        margin: 0 0 5rem 0;
+        padding: 3rem 0;
+        margin: 0 auto 8rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: var(--light-gray);
         gap: 1.5rem;
         text-align: center;
-        overflow: hidden;
-        background-color: var(--light-gray);
         position: relative;
 
         .share-pic {
@@ -43,8 +61,8 @@
             margin: 0 auto;
             font-family: 'Salty';
             font-size: calc(4rem + 1vw);
-            font-weight: 300;
             line-height: calc(3rem + 1vw);
+            font-weight: 300;
             color: var(--gray);
         }
 
@@ -58,13 +76,15 @@
             max-width: 20rem;
         }
 
-        .share-tweek {
-            display: block;
-            position: absolute;
-            bottom: -7rem;
-            right: -3rem;
-            width: 80%;
-            height: auto;
-        }
     }
+    img.share-tweek {
+        width: calc(90% + 5vw);
+        height: auto;
+        position: absolute;
+        display: block;
+        bottom: calc(-1rem - 1vh);
+        right: -5rem;
+        aspect-ratio: 16 / 8;
+    }
+    
 </style>
