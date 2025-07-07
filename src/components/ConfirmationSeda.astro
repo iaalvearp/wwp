@@ -1,0 +1,82 @@
+
+
+<article class="confirmation-container">
+    <form class="form-container">
+        <h2 class="confirmation-title">Confirma tu asistencia</h2>
+        <p class="confirmation-text">para reservar su lugar</p>
+        <select name="answer" id="answer">
+            <option value="answerYes">Sí iremos.</option>
+            <option value="answerNo">No podremos asistir.</option>
+        </select>
+        <input type="text" name="confirmationName" id="confirmationName" placeholder="Nombre" required>
+        <textarea name="confirmationMessage" id="confirmationMessage" placeholder="Mensaje para los Novios"></textarea>
+        <button type="submit" class="confirmation-button">Enviar</button>
+    </form>
+</article>
+
+<style>
+    .confirmation-container {
+        padding: 0 0 10rem;
+    }
+    .form-container {
+        width: 80%;
+        max-width: 48rem;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center;
+        justify-content: center;
+
+        .confirmation-title {
+            font-family: 'Salty';
+            font-size: calc(4rem + 1vw);
+            line-height: calc(3rem + 1vw);
+            font-weight: 300;
+            color: var(--black);
+            margin: 0 auto;
+        }
+
+        .confirmation-text {
+            margin: -0.75rem auto 0.5rem;
+            font-family: 'Cormorant';
+            font-size: calc(0.875rem + 1vw);
+            line-height: calc(1.5rem + 2vw);
+            color: var(--black);
+            max-width: 20rem;
+        }
+        
+        select#answer, input#confirmationName, textarea#confirmationMessage {
+            padding: .75rem .5rem;
+            width: 100%;
+            font-family: 'Bebas Reg';
+            font-size: calc(0.75rem + 1vw);
+            color: var(--gray);
+            border-radius: 4px;
+            background-color: var(--light-gray);
+            letter-spacing: 1px;
+            margin: 0 auto;
+            border: 1px solid transparent;
+        }
+        
+        input#confirmationName, textarea#confirmationMessage {
+            width: calc(100% - 1rem);
+        }
+        
+        .confirmation-button {
+            position: absolute;
+            font-family: 'Bebas Reg';
+            letter-spacing: 1px;
+            color: var(--gray);
+            font-size: calc(0.75rem + 1vw);
+            right: 0;
+            bottom: -3rem;
+            padding: 0.5rem 2rem;
+            border: 1px solid var(--light-gray);
+            background-color: var(--light-gray);
+            border-radius: 4px;
+        }
+    }
+</style>
