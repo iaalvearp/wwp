@@ -1,0 +1,81 @@
+---
+
+---
+
+<article class="gallery-container">
+    <div id="my-gallery">
+        <a href="/imgs/1.avif" 
+            data-pswp-width="998" 
+            data-pswp-height="664"
+            data-cropped="true"
+            target="_blank">
+            <img src="/imgs/1-crop.avif" alt="" />
+        </a>
+        <a href="/imgs/2.avif" 
+            data-pswp-width="998" 
+            data-pswp-height="664"
+            data-cropped="true"
+            target="_blank">
+            <img src="/imgs/2-crop.avif" alt="" />
+        </a>
+        <a href="/imgs/3.avif" 
+            data-pswp-width="998" 
+            data-pswp-height="664"
+            data-cropped="true"
+            target="_blank">
+            <img src="/imgs/3-crop.avif" alt="" />
+        </a>
+    </div>
+</article>
+<style>
+    .gallery-container {
+        width: 100%;
+        max-width: 48rem;
+        margin: 0 auto;
+
+        #my-gallery {
+            aspect-ratio: 3 / 4;
+            width: 100%;
+            height: auto;
+            position: relative;
+            overflow: scroll;
+            z-index: 0;
+            background-color: var(--light-gray);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+            scroll-snap-align: center;
+            scroll-snap-type: x mandatory;
+            grid-auto-flow: column;
+
+            a  {
+                width: 100%;
+                height: 100%;
+                min-width: 320px;
+                display: block;
+                left: 0;
+                position: static;
+                border-radius: .25rem;
+                scroll-snap-align: center;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+</style>
+
+<script>
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import 'photoswipe/style.css';
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#my-gallery',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+    });
+    lightbox.init();
+</script>
