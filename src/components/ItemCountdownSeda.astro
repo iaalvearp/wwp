@@ -11,7 +11,7 @@ interface Props {
 
 <div>
     <span id={ id } class="number">00</span>
-    <span class="date=text">{ text }</span>
+    <span class="date-text">{ text }</span>
 </div>
 
 <style>
@@ -29,13 +29,25 @@ interface Props {
             align-items: center;
             gap: 0.5rem 0;
             font-variant-numeric: tabular-nums;
-            font-size: 1.25rem;
+            font-size: calc(1rem + 1vw);
         }
 
-        span.date {
-            font-size: 1rem;
+        span.date-text {
+            font-size: calc(0.875rem + 1vw);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+    }
+
+     @media (width >= 768px) {
+        .number {
+            font-size: 2rem;
+        }
+
+        #date-text {
+            font-size: 1.5rem;
+        }
+
+
     }
 </style>
