@@ -5,14 +5,14 @@ import gallery from '../../public/gallery.js';
 
 <article class="gallery-container">
     <div id="my-gallery">
-        {gallery.map(img => (
-            <a href={img.src} 
-                data-pswp-width= {img.picture.width}
-                data-pswp-height= {img.picture.height}
+        {gallery.map(item => (
+            <a href={item.src} 
+                data-pswp-width= {item.picture.width}
+                data-pswp-height= {item.picture.height}
                 data-cropped = "true"
                 target="_blank"
                 rel="noopener noreferrer">
-                <img src={img.crop} alt={img.alt} />
+                <img src={item.crop} alt={item.alt} />
             </a>
         ))}
     </div>
