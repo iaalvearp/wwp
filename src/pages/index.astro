@@ -16,8 +16,8 @@ import FooterSeda from '../components/FooterSeda.astro';
 ---
 
 <Layout>
+    <img class="main-bg" src="imgs/bg-dirty.avif" alt="">        
     <main>
-        <img class="main-bg" src="imgs/bg-dirty.avif" alt="">        
         <HeroSeda />
         <CountdownSectionSeda/>
         <OurParentsSeda />
@@ -36,17 +36,18 @@ import FooterSeda from '../components/FooterSeda.astro';
 <style is:global>
     main {
         width: 100%;
+        min-height: 100%;
+        max-width: 48rem;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .main-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        position: relative;
-
-        .main-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
+        object-fit: cover;
+        z-index: -1;
     }
 </style>
