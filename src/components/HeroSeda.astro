@@ -77,7 +77,7 @@ import MusicControl from "./MusicControl.astro";
                 </svg>
             </picture>
         </div>
-        <h1><span>Amelia</span> <span class="and">&</span> <span>Gerardo</span></h1>
+        <h1 class="header-title"><span>Amelia</span> <span class="and">&</span> <span>Gerardo</span></h1>
         <div class="text">
             <div class="bar"></div>
             <h2 class="our-wedding">NUESTRA BODA</h2>
@@ -104,6 +104,23 @@ import MusicControl from "./MusicControl.astro";
                 height: 100%;
                 align-items: center;
                 text-align: center;
+
+                .header-title {
+                    font-family: "Salty", cursive;
+                    font-size: calc(5rem + 4vw);
+                    font-weight: 400;
+                    width: 60%;
+                    height: auto;
+                    display: block;
+                    text-align: center;
+                    margin: calc(2.5rem + 2vh) auto 0;
+                    line-height: 3rem;
+    
+                    .and {
+                        font-size: calc(3rem + 4vw);
+                        font-weight: 400;
+                    }
+                }
 
                 .text {
                     text-align: center;
@@ -139,24 +156,9 @@ import MusicControl from "./MusicControl.astro";
                     }
 
                 }
+                
             }
 
-            h1 {
-                font-family: "Salty", sans-serif;
-                font-size: calc(5rem + 4vw);
-                font-weight: 400;
-                width: 60%;
-                height: auto;
-                display: block;
-                text-align: center;
-                margin: calc(2.5rem + 2vh) auto 0;
-                line-height: 3rem;
-
-                .and {
-                    font-size: calc(3rem + 4vw);
-                    font-weight: 400;
-                }
-            }
 
         }
         .pics {
@@ -206,7 +208,7 @@ import MusicControl from "./MusicControl.astro";
                     align-items: self-start;
                     text-align: left;
 
-                    h1 {
+                    .header-title {
                         display: flex;
                         gap: 1rem;
                         font-size: 5rem;

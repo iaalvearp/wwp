@@ -61,7 +61,18 @@ import gallery from '../../public/gallery.js';
     @media (width >= 768px) {
         .gallery-container {
             #my-gallery {
-                aspect-ratio: 16/9;
+                aspect-ratio: 3/4;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+
+                a {
+                    width: 100%;
+                    height: auto;
+
+                    img {
+                        object-position: center;
+                    }
+                }
             }
         }
     }
