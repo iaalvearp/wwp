@@ -1,7 +1,7 @@
 
 
 <article class="confirmation-container">
-    <form class="form-container">
+    <form class="form-container" id="confirmation-form">
         <h2 class="confirmation-title">Confirma tu asistencia</h2>
         <p class="confirmation-text">para reservar su lugar</p>
         <select name="answer" id="answer">
@@ -11,8 +11,78 @@
         <input type="text" name="confirmationName" id="confirmationName" placeholder="Nombre" required>
         <textarea name="confirmationMessage" id="confirmationMessage" placeholder="Mensaje para los Novios"></textarea>
         <button type="submit" class="confirmation-button">Enviar</button>
+        <p class="form-status" id="form-status" role="status" hidden></p>
     </form>
 </article>
+
+<script>
+    const webhookUrl =
+        import.meta.env.PUBLIC_N8N_WEBHOOK_URL ??
+        'https://enhance-river-flickr-presently.trycloudflare.com/webhook-test/b7814717-8c9a-4022-a3b7-2c8b527aa721';
+
+    const form = document.getElementById('confirmation-form');
+    const statusEl = document.getElementById('form-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const defaultButtonText = submitButton.textContent;
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (typeof fetch !== 'function') {
+            showStatus(
+                'Tu navegador no es compatible con el envío del formulario. Inténtalo en un navegador actualizado.',
+                'error'
+            );
+            return;
+        }
+
+        const formData = new FormData(form);
+        const payload = {
+            type: 'rsvp_confirmation',
+            data: {
+                answer: formData.get('answer'),
+                confirmationName: formData.get('confirmationName'),
+                confirmationMessage: formData.get('confirmationMessage')
+            },
+            submittedAt: new Date().toISOString()
+        };
+
+        setLoading(true);
+
+        try {
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`El servidor respondió con estado ${response.status}`);
+            }
+
+            form.reset();
+            showStatus('¡Gracias! Hemos recibido tu confirmación.', 'success');
+        } catch (error) {
+            showStatus(
+                'No se pudo enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo.',
+                'error'
+            );
+        } finally {
+            setLoading(false);
+        }
+    });
+
+    function setLoading(isLoading) {
+        submitButton.disabled = isLoading;
+        submitButton.textContent = isLoading ? 'Enviando...' : defaultButtonText;
+    }
+
+    function showStatus(message, kind) {
+        statusEl.textContent = message;
+        statusEl.className = `form-status form-status--${kind}`;
+        statusEl.hidden = false;
+    }
+</script>
 
 <style>
     .confirmation-container {
@@ -77,6 +147,25 @@
             border: 1px solid var(--light-gray);
             background-color: var(--light-gray);
             border-radius: 4px;
+        }
+
+        .confirmation-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            margin: 3.5rem auto 0;
+            font-family: 'Cormorant';
+            font-size: calc(0.875rem + 1vw);
+            line-height: calc(1.25rem + 1vw);
+            color: var(--black);
+            max-width: 24rem;
+            width: 100%;
+        }
+
+        .form-status--error {
+            color: #c0392b;
         }
     }
 
