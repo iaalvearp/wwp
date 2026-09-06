@@ -1,180 +1,205 @@
-
-
 <article class="confirmation-container">
-    <form class="form-container" id="confirmation-form">
-        <h2 class="confirmation-title">Confirma tu asistencia</h2>
-        <p class="confirmation-text">para reservar su lugar</p>
-        <select name="answer" id="answer">
-            <option value="answerYes">Sí iremos.</option>
-            <option value="answerNo">No podremos asistir.</option>
-        </select>
-        <input type="text" name="confirmationName" id="confirmationName" placeholder="Nombre" required>
-        <textarea name="confirmationMessage" id="confirmationMessage" placeholder="Mensaje para los Novios"></textarea>
-        <button type="submit" class="confirmation-button">Enviar</button>
-        <p class="form-status" id="form-status" role="status" hidden></p>
-    </form>
+  <form class="form-container" id="confirmation-form">
+    <h2 class="confirmation-title">Confirma tu asistencia</h2>
+    <p class="confirmation-text">para reservar su lugar</p>
+    <select name="answer" id="answer">
+      <option value="answerYes">Sí iremos.</option>
+      <option value="answerNo">No podremos asistir.</option>
+    </select>
+    <input
+      type="text"
+      name="confirmationName"
+      id="confirmationName"
+      placeholder="Nombre"
+      required
+    />
+    <textarea
+      name="confirmationMessage"
+      id="confirmationMessage"
+      placeholder="Mensaje para los Novios"></textarea>
+    <button type="submit" class="confirmation-button">Enviar</button>
+    <p class="form-status" id="form-status" role="status" hidden></p>
+  </form>
 </article>
 
 <script>
-    const webhookUrl =
-        import.meta.env.PUBLIC_N8N_WEBHOOK_URL ??
-        'https://outcome-unnecessary-abraham-likewise.trycloudflare.com/webhook-test/1dc0f1e7-7594-4217-8cbe-99f61a163eee';
+  const webhookUrl =
+    import.meta.env.PUBLIC_N8N_WEBHOOK_URL ??
+    "https://reuters-bodies-show-met.trycloudflare.com/webhook-test/1dc0f1e7-7594-4217-8cbe-99f61a163eee";
 
-    const form = document.getElementById('confirmation-form');
-    const statusEl = document.getElementById('form-status');
-    const submitButton = form.querySelector('button[type="submit"]');
-    const defaultButtonText = submitButton.textContent;
+  const form = document.getElementById(
+    "confirmation-form",
+  ) as HTMLFormElement | null;
+  const statusEl = document.getElementById("form-status") as HTMLElement | null;
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+  if (!form || !statusEl) {
+    throw new Error(
+      "No se encontró el formulario de confirmación o el estado del formulario.",
+    );
+  }
 
-        if (typeof fetch !== 'function') {
-            showStatus(
-                'Tu navegador no es compatible con el envío del formulario. Inténtalo en un navegador actualizado.',
-                'error'
-            );
-            return;
-        }
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]',
+  );
 
-        const formData = new FormData(form);
-        const payload = {
-            type: 'rsvp_confirmation',
-            data: {
-                answer: formData.get('answer'),
-                confirmationName: formData.get('confirmationName'),
-                confirmationMessage: formData.get('confirmationMessage')
-            },
-            submittedAt: new Date().toISOString()
-        };
+  if (!submitButton) {
+    throw new Error("No se encontró el botón de envío del formulario.");
+  }
 
-        setLoading(true);
+  const defaultButtonText = submitButton.textContent ?? "Enviar";
 
-        try {
-            const response = await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-            if (!response.ok) {
-                throw new Error(`El servidor respondió con estado ${response.status}`);
-            }
-
-            form.reset();
-            showStatus('¡Gracias! Hemos recibido tu confirmación.', 'success');
-        } catch (error) {
-            showStatus(
-                'No se pudo enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo.',
-                'error'
-            );
-        } finally {
-            setLoading(false);
-        }
-    });
-
-    function setLoading(isLoading) {
-        submitButton.disabled = isLoading;
-        submitButton.textContent = isLoading ? 'Enviando...' : defaultButtonText;
+    if (typeof fetch !== "function") {
+      showStatus(
+        "Tu navegador no es compatible con el envío del formulario. Inténtalo en un navegador actualizado.",
+        "error",
+      );
+      return;
     }
 
-    function showStatus(message, kind) {
-        statusEl.textContent = message;
-        statusEl.className = `form-status form-status--${kind}`;
-        statusEl.hidden = false;
+    const formData = new FormData(form);
+    const payload = {
+      type: "rsvp_confirmation",
+      data: {
+        answer: formData.get("answer"),
+        confirmationName: formData.get("confirmationName"),
+        confirmationMessage: formData.get("confirmationMessage"),
+      },
+      submittedAt: new Date().toISOString(),
+    };
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`El servidor respondió con estado ${response.status}`);
+      }
+
+      form.reset();
+      showStatus("¡Gracias! Hemos recibido tu confirmación.", "success");
+    } catch (error) {
+      showStatus(
+        "No se pudo enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo.",
+        "error",
+      );
+    } finally {
+      setLoading(false);
     }
+  });
+
+  function setLoading(isLoading: boolean) {
+    submitButton!.disabled = isLoading;
+    submitButton!.textContent = isLoading ? "Enviando..." : defaultButtonText;
+  }
+
+  function showStatus(message: string, kind: "success" | "error"): void {
+    statusEl!.textContent = message;
+    statusEl!.className = `form-status form-status--${kind}`;
+    statusEl!.hidden = false;
+  }
 </script>
 
 <style>
-    .confirmation-container {
-        padding: 0 0 10rem;
+  .confirmation-container {
+    padding: 0 0 10rem;
+  }
+  .form-container {
+    width: 80%;
+    max-width: 48rem;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+
+    .confirmation-title {
+      font-family: "Salty";
+      font-size: calc(4rem + 1vw);
+      line-height: calc(3rem + 1vw);
+      font-weight: 300;
+      color: var(--black);
+      margin: 0 auto;
     }
+
+    .confirmation-text {
+      margin: -0.75rem auto 0.5rem;
+      font-family: "Cormorant";
+      font-size: calc(0.875rem + 1vw);
+      line-height: calc(1.5rem + 2vw);
+      color: var(--black);
+      max-width: 20rem;
+    }
+
+    select#answer,
+    input#confirmationName,
+    textarea#confirmationMessage {
+      padding: 0.75rem 0.5rem;
+      width: 100%;
+      font-family: "Bebas Reg";
+      font-size: calc(0.75rem + 1vw);
+      color: var(--gray);
+      border-radius: 4px;
+      background-color: var(--light-gray);
+      letter-spacing: 1px;
+      margin: 0 auto;
+      border: 1px solid transparent;
+    }
+
+    input#confirmationName,
+    textarea#confirmationMessage {
+      width: calc(100% - 1rem);
+    }
+
+    .confirmation-button {
+      position: absolute;
+      font-family: "Bebas Reg";
+      letter-spacing: 1px;
+      color: var(--gray);
+      font-size: calc(0.75rem + 1vw);
+      right: 0;
+      bottom: -3rem;
+      padding: 0.5rem 2rem;
+      border: 1px solid var(--light-gray);
+      background-color: var(--light-gray);
+      border-radius: 4px;
+    }
+
+    .confirmation-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-status {
+      margin: 3.5rem auto 0;
+      font-family: "Cormorant";
+      font-size: calc(0.875rem + 1vw);
+      line-height: calc(1.25rem + 1vw);
+      color: var(--black);
+      max-width: 24rem;
+      width: 100%;
+    }
+
+    .form-status--error {
+      color: #c0392b;
+    }
+  }
+
+  @media (width >= 768px) {
     .form-container {
-        width: 80%;
-        max-width: 48rem;
-        margin: 0 auto;
-        position: relative;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-        align-items: center;
-        justify-content: center;
-
-        .confirmation-title {
-            font-family: 'Salty';
-            font-size: calc(4rem + 1vw);
-            line-height: calc(3rem + 1vw);
-            font-weight: 300;
-            color: var(--black);
-            margin: 0 auto;
-        }
-
-        .confirmation-text {
-            margin: -0.75rem auto 0.5rem;
-            font-family: 'Cormorant';
-            font-size: calc(0.875rem + 1vw);
-            line-height: calc(1.5rem + 2vw);
-            color: var(--black);
-            max-width: 20rem;
-        }
-        
-        select#answer, input#confirmationName, textarea#confirmationMessage {
-            padding: .75rem .5rem;
-            width: 100%;
-            font-family: 'Bebas Reg';
-            font-size: calc(0.75rem + 1vw);
-            color: var(--gray);
-            border-radius: 4px;
-            background-color: var(--light-gray);
-            letter-spacing: 1px;
-            margin: 0 auto;
-            border: 1px solid transparent;
-        }
-        
-        input#confirmationName, textarea#confirmationMessage {
-            width: calc(100% - 1rem);
-        }
-        
-        .confirmation-button {
-            position: absolute;
-            font-family: 'Bebas Reg';
-            letter-spacing: 1px;
-            color: var(--gray);
-            font-size: calc(0.75rem + 1vw);
-            right: 0;
-            bottom: -3rem;
-            padding: 0.5rem 2rem;
-            border: 1px solid var(--light-gray);
-            background-color: var(--light-gray);
-            border-radius: 4px;
-        }
-
-        .confirmation-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .form-status {
-            margin: 3.5rem auto 0;
-            font-family: 'Cormorant';
-            font-size: calc(0.875rem + 1vw);
-            line-height: calc(1.25rem + 1vw);
-            color: var(--black);
-            max-width: 24rem;
-            width: 100%;
-        }
-
-        .form-status--error {
-            color: #c0392b;
-        }
+      .confirmation-button {
+        bottom: -5rem;
+      }
     }
-
-    @media (width >= 768px) {
-        .form-container {
-            
-            .confirmation-button {
-                bottom: -5rem;
-            }
-        }
-    }
+  }
 </style>
